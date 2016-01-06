@@ -8,6 +8,7 @@ Created on Tue Jan  5 18:36:14 2016
 import colorsys
 import os
 import math
+import random
 from PIL import Image,ImageStat,ImageFilter
 
 def process_icons(subdir_name):
@@ -99,6 +100,15 @@ def dota_sortRGB(data):
     
     testim = Image.new("RGB",((x_max)+(border_x*(num_cols+1)),(y_max)+(border_y*(num_rows+1))))
     
+    for row in data:
+        im = row[0]
+        
+        #resize and crop large icons down to size
+        row[0] = resizeImage(im,(target_x,target_y))
+        
+        #recalculate median RGB values of the icons since they have been resized
+        row[1] = list(ImageStat.Stat(row[0]).median)
+    
     y_coord = 0
     for x in range(0,num_cols):
         x_rel = x/num_cols
@@ -121,9 +131,6 @@ def dota_sortRGB(data):
             im = row[0]
             r,g,b = row[1]
             
-            #resize and crop large icons down to size
-            im = resizeImage(im,(target_x,target_y))
-            
             testim.paste(im,((border_x*(x+1)) + (target_x)*x,(border_y*(y_coord+1) + (target_y)*y_coord)))
     
     testim.save("output1.png")
@@ -139,6 +146,14 @@ def dota_sortRGB(data):
 def dist_RGB(RGB1,RGB2):
     r1,g1,b1 = RGB1
     r2,g2,b2 = RGB2
+    
+    r1 = r1 + random.uniform(-255,255)/50
+    g1 = g1 + random.uniform(-255,255)/50
+    b1 = b1 + random.uniform(-255,255)/50
+    
+    r2 = r2 + random.uniform(-255,255)/50
+    g2 = g2 + random.uniform(-255,255)/50
+    b2 = b2 + random.uniform(-255,255)/50
     
     return ((r1-r2)**2 + (g1-g2)**2 + (b1-b2)**2)
 
