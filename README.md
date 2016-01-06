@@ -6,6 +6,6 @@ Warning: the output files generated can be *massive*.
 
 ## Requirements
 
-Python3
+* Python3
 
-Pillow
+* Pillow
