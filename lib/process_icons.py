@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Tue Jan  5 18:36:14 2016
-
-@author: Steven
-"""
-
 import colorsys
 import os
 import math

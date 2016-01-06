@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Tue Jan  5 17:32:45 2016
-
-@author: Steven
-"""
-
 from urllib.request import urlopen
 import json
 import os
