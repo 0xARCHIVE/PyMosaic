@@ -47,10 +47,12 @@ def fetch_icons(subdir_name):
         print('Creating subdirectory ' + subdir_name + ' (' + subdir_loc + ')')
         os.makedirs(subdir_loc)
     
-    print('Fetching item icons')
-    fetch_icons_category(subdir_loc,'Item_Icons')
-    print('Complete')
-    
-    print('Fetching spell icons')
-    fetch_icons_category(subdir_loc,'Spell_Icons')
-    print('Complete')
+    #check if subdirectory has any icons in it
+    if not os.listdir(subdir_loc):
+        print('Fetching item icons')
+        fetch_icons_category(subdir_loc,'Item_Icons')
+        print('Complete')
+        
+        print('Fetching spell icons')
+        fetch_icons_category(subdir_loc,'Spell_Icons')
+        print('Complete')

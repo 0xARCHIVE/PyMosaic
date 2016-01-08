@@ -24,7 +24,8 @@ def process_icons(subdir_name):
         if (im.mode != "RGB"):  #todo: fix P->RGB icons
             continue
         
-        cols = list(ImageStat.Stat(im).median)
+        im_blurred = im.filter(ImageFilter.GaussianBlur(10))
+        cols = list(ImageStat.Stat(im_blurred).mean)
         
         data = []
         data.append(im)
@@ -65,14 +66,15 @@ def resizeImage(im,target_size):
     return resizedIm
 
 def scoreRGB(x,RGB):
-    score_red = math.e**(-4*(x**2))/(4/(math.pi**(1/2)))
-    score_green = math.e**(-16*((x-0.5)**2))/(4/(math.pi**(1/2)))
-    score_blue = math.e**(-4*((x-1)**2))/(4/(math.pi**(1/2)))
+#    score_red = math.e**(-4*(x**2))/(4/(math.pi**(1/2)))
+#    score_green = math.e**(-16*((x-0.5)**2))/(4/(math.pi**(1/2)))
+#    score_blue = math.e**(-4*((x-1)**2))/(4/(math.pi**(1/2)))
     
     red,green,blue = RGB
     h,s,v = colorsys.rgb_to_hsv(RGB[0],RGB[1],RGB[2])
     
-    score = h*score_red
+    score = math.e**(-16*((h/255 + 0.25)**2))/(4/(math.pi**(1/2)))
+    #score = h*score_red
     
 #    score = (1/3)*(h*score_red + s*score_green + v*score_blue)
     return score
@@ -165,13 +167,22 @@ def find_closest_RGB(target_RGB,pallete):
     return candidate_color
             
 
-def image_replicate(subdir_name):
-    icons = process_icons(subdir_name)
+def image_replicate(target_loc,subdir_name,loaded_icons = None,size_mod = 1):
+    size_mod = int(size_mod)
     
-    target_im_original = Image.open("collage_target.png")
+    if (loaded_icons == None):
+        icons = process_icons(subdir_name)
+    else:
+        icons = loaded_icons
+    
+    if not os.path.exists(target_loc):
+        print('Target image not found')
+        return
+    
+    target_im_original = Image.open(target_loc)
     
     target_im = target_im_original
-    target_im = target_im.resize((int(target_im.size[0]/4),int(target_im.size[1]/4)))
+    target_im = target_im.resize((int(target_im.size[0]/size_mod),int(target_im.size[1]/size_mod)))
     
     icon_size_x = 32
     icon_size_y = 32
