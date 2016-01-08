@@ -11,7 +11,9 @@ A simple mosaic generating program
 ## Usage
 
 Run pymosaic.py
+
 When prompted, either (a) type in the location of the image, or (b) drag and drop the file itself, that you want to be turned into a mosaic
+
 Hit enter
 
 ## Large input files
