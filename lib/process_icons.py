@@ -206,13 +206,13 @@ def image_replicate(target_loc,subdir_name,loaded_icons = None,size_mod = 1):
             
             output_im.paste(output_RGB[0],(x*icon_size_x,y*icon_size_y))
     
-    output_im.save("collage_output.png")
+    output_im.save("mosaic_raw.png")
     
     output_im_small = output_im.resize((int(output_im.size[0]/4),int(output_im.size[1]/4)))
-    output_im_small.save("collage_output_small.png")
+    output_im_small.save("mosaic.png")
     
     output_im.thumbnail(target_im_original.size)
-    output_im.save("collage_output_thumb.png")
+    output_im.save("mosaic_thumb.png")
     
     output_im.close()
     output_im_small.close()

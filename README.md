@@ -24,8 +24,8 @@ If your inputted file is large then it could take a long time to generate a mosa
 
 Three .png files are generated:
 
-*collage_output.png* - the raw (full size) collage. This file can be incredibly large!
+*mosaic_raw.png* - the raw (full size) mosaic. This file can be incredibly large!
 
-*collage_output_small.png* - a more reasonably sized image, 1/4 of the size of the raw output in each direction
+*mosaic.png* - a more reasonably sized image, 1/4 of the size of the raw output in each direction
 
-*collage_output_thumb.png* - a thumbnail of the collage
+*mosaic_thumb.png* - a thumbnail of the mosaic
