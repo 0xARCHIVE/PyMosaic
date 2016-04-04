@@ -29,3 +29,9 @@ Three .png files are generated:
 *mosaic.png* - a more reasonably sized image, 1/4 of the size of the raw output in each direction
 
 *mosaic_thumb.png* - a thumbnail of the mosaic
+
+## Examples
+
+![Meepo Mosaic](http://i.imgur.com/mlrVmnJ.png)
+
+![Dota Icon Rainbow Mosaic](http://i.imgur.com/vua5fiA.jpg)
