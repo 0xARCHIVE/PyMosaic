@@ -9,7 +9,7 @@ def fetch_icons_category(subdir_loc,icon_category):
         return
     
     print('Fetching list of icons')
-    response = urlopen('http://wiki.teamliquid.net/dota2/api.php?format=json&action=query&list=categorymembers&cmtype=file&cmlimit=max&cmtitle=Category:' + icon_category) #dota icons
+    response = urlopen('http://wiki.teamliquid.net/commons/api.php?format=json&action=query&list=categorymembers&cmtype=file&cmlimit=max&cmtitle=Category:' + icon_category) #dota icons
     response_json = response.read()
     response_data = json.loads(response_json.decode())
     
@@ -17,7 +17,7 @@ def fetch_icons_category(subdir_loc,icon_category):
     for member in response_data['query']['categorymembers']:
         pageid = str(member['pageid'])   #pageID of the page containing the full image URL
         
-        response = urlopen('http://wiki.teamliquid.net/dota2/api.php?format=json&action=query&prop=info&pageids=' + pageid + '&prop=imageinfo&iiprop=url') #dota icons
+        response = urlopen('http://wiki.teamliquid.net/commons/api.php?format=json&action=query&prop=info&pageids=' + pageid + '&prop=imageinfo&iiprop=url') #dota icons
         response_json = response.read()
         response_data = json.loads(response_json.decode())
         
@@ -56,3 +56,6 @@ def fetch_icons(subdir_name):
         print('Fetching spell icons')
         fetch_icons_category(subdir_loc,'Spell_Icons')
         print('Complete')
+
+if '__main__' == __name__:
+    fetch_icons("Dota2_icons")
