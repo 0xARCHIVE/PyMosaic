@@ -1,3 +1,3 @@
 # PyMosaic
 
-A mosaic generating program
+A mosaic generating program (rewriting in progress)
