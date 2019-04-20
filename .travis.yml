@@ -1,5 +1,10 @@
+language: python
+
 services:
   - docker
+
+install:
+  - pip install codecov
 
 script:
   - docker-compose up --build
